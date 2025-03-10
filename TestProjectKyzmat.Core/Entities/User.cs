@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,14 +11,13 @@ namespace TestProjectKyzmat.Core.Entities
 {
     public class User : BaseEntity, IDateFixEntity
     {
-        public string? UserName { get; set; }
-        public string? PasswordHash { get; set; }
+        public required string UserName { get; set; }
+        public required string PasswordHash { get; set; }
         public decimal Balance { get; set; }
         public DateTime DateCreate { get; set; }
-        public DateTime DateUpdate { get; set; }
-        public DateTime? DateAttempt { get; set; }
+        public DateTime? DateUpdate { get; set; }
 
-        public ICollection<Token> Tokens { get;} = [];
-        public ICollection<Payment> Payments { get;} = [];
+        public virtual ICollection<Token> Tokens { get; set; } = [];
+        public virtual ICollection<Payment> Payments { get; set; } = [];
     }
 }
