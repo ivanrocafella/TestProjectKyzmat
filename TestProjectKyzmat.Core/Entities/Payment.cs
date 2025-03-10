@@ -12,7 +12,7 @@ namespace TestProjectKyzmat.Core.Entities
     {
         public decimal Amount { get; set; }
         public DateTime DateCreate { get; set; }
-        public DateTime DateUpdate { get; set; }
+        public DateTime? DateUpdate { get; set; }
 
         public int UserId { get; set; }
         public User? User { get; set; }

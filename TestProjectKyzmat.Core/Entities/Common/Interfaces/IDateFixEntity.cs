@@ -9,6 +9,6 @@ namespace TestProjectKyzmat.Core.Entities.Common.Interfaces
     public interface IDateFixEntity
     {
         public DateTime DateCreate { get; set; }
-        public DateTime DateUpdate { get; set; }
+        public DateTime? DateUpdate { get; set; }
     }
 }
