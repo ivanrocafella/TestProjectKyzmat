@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestProjectKyzmat.Core.Entities
+namespace TestProjectKyzmat.Core.Entities.Common.Interfaces
 {
-    internal class Role
+    internal interface IPaymentRepository
     {
     }
 }
