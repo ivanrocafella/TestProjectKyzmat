@@ -12,20 +12,21 @@ namespace TestProjectKyzmat.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasData(
-                new User
-                { 
-                    Id = 1,
-                    UserName = "user",
-                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("qwerty12345"),
-                    Balance = 27.8m
-                }
-                );
+            modelBuilder.Entity<User>().HasIndex(o => o.UserName);         
             foreach (var relationship in modelBuilder.Model.GetEntityTypes()
                 .SelectMany(e => e.GetForeignKeys()))
             {
                 relationship.DeleteBehavior = DeleteBehavior.Restrict;
             }
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    Id = 1,
+                    UserName = "user",
+                    DateCreate = new DateTime(2025, 3, 10, 15, 45, 23, DateTimeKind.Utc),
+                    PasswordHash = "$2a$11$ilZsBJ46DXogvezFCtbWN.WHMtdSqL9IEvBaR73Ge6jxMVh1/3.ku", // password: qwerty12345 
+                    Balance = 27.8m
+                });
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
