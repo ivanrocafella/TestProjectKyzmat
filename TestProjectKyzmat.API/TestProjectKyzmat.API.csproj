@@ -10,4 +10,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TestProjectKyzmat.BAL\TestProjectKyzmat.BAL.csproj" />
+    <ProjectReference Include="..\TestProjectKyzmat.Core\TestProjectKyzmat.Core.csproj" />
+    <ProjectReference Include="..\TestProjectKyzmat.DAL\TestProjectKyzmat.DAL.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -5,13 +5,15 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using TestProjectKyzmat.Core.Entities.Common;
+using TestProjectKyzmat.Core.Entities.Common.Interfaces;
 
 namespace TestProjectKyzmat.Core.Entities
 {
-    public class Token : BaseEntity
+    public class Token : BaseEntity, IDateFixEntity
     {
-        public string? Value { get; set; }
+        public required string Value { get; set; }
         public DateTime DateCreate { get; set; }
+        public DateTime? DateUpdate { get; set; }
 
         public int UserId { get; set; }
         public User? User { get; set; }
