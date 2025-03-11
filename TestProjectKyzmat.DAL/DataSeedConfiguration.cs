@@ -19,7 +19,7 @@ namespace TestProjectKyzmat.DAL
                      UserName = "user",
                      PasswordHash = BCrypt.Net.BCrypt.HashPassword("qwerty12345"),
                      DateCreate = DateTime.UtcNow,
-                     Balance = 27.8m
+                     Balance = 8m
                  }
                 );
         }

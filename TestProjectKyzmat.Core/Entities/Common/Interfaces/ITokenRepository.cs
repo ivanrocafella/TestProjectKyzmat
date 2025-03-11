@@ -8,5 +8,6 @@ namespace TestProjectKyzmat.Core.Entities.Common.Interfaces
 {
     public interface ITokenRepository : IRepository<Token>
     {
+        Task<Token?> GetByValueAsync(string name);
     }
 }

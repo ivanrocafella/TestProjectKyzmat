@@ -14,6 +14,7 @@ namespace TestProjectKyzmat.Core.Entities
         public required string Value { get; set; }
         public DateTime DateCreate { get; set; }
         public DateTime? DateUpdate { get; set; }
+        public DateTime ExpiresAt { get; set; }
 
         public int UserId { get; set; }
         public User? User { get; set; }

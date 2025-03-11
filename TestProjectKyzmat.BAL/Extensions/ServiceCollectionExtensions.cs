@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestProjectKyzmat.BAL.Services.JwtFeatures;
 using TestProjectKyzmat.Core.Entities.Common.Interfaces;
 using TestProjectKyzmat.DAL;
 using TestProjectKyzmat.DAL.Repositories;
@@ -19,6 +20,7 @@ namespace TestProjectKyzmat.BAL.Extensions
         {
             services.AddDatabaseContext(configuration);
             services.AddRepositories();
+            services.AddScoped<JwtHandler>();
             return services;
         }
         public static void AddRepositories(this IServiceCollection services)
