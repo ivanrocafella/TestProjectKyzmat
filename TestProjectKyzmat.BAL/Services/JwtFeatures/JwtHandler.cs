@@ -18,6 +18,7 @@ namespace TestProjectKyzmat.BAL.Services.JwtFeatures
         public SigningCredentials GetSigningCredentials()
         {
             var key = Encoding.UTF8.GetBytes(_jwtSettings.GetSection("securityKey").Value);
+            Console.WriteLine(_jwtSettings.GetSection("securityKey").Value);
             var secret = new SymmetricSecurityKey(key);
             return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
         }
@@ -44,11 +45,12 @@ namespace TestProjectKyzmat.BAL.Services.JwtFeatures
         public string GenerateToken(User user)
         {
             var token = new JwtSecurityToken(
-                issuer: _jwtSettings["validIssuer"],
                 claims: GetClaims(user),
                 expires: DateTime.Now.AddMinutes(Convert.ToDouble(_jwtSettings["expiryInMinutes"])),
                 signingCredentials: GetSigningCredentials());
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+        
+        public static SecurityToken ReadToken(string tokenValue) => new JwtSecurityTokenHandler().ReadToken(tokenValue);
     }
 }

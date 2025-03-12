@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TestProjectKyzmat.DAL;
@@ -11,9 +12,11 @@ using TestProjectKyzmat.DAL;
 namespace TestProjectKyzmat.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250312044724_added expiresdate to token")]
+    partial class addedexpiresdatetotoken
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -115,7 +118,7 @@ namespace TestProjectKyzmat.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            Balance = 8m,
+                            Balance = 27.8m,
                             DateCreate = new DateTime(2025, 3, 10, 15, 45, 23, 0, DateTimeKind.Utc),
                             PasswordHash = "$2a$11$ilZsBJ46DXogvezFCtbWN.WHMtdSqL9IEvBaR73Ge6jxMVh1/3.ku",
                             UserName = "user"

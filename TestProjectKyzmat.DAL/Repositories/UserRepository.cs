@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,6 @@ namespace TestProjectKyzmat.DAL.Repositories
 {
     public class UserRepository(ApplicationDbContext context) : Repository<User>(context), IUserRepository
     {
+        public async Task<User?> GetByUserNameAsyncForRead(string userName) => await context.Set<User>().AsNoTracking().FirstOrDefaultAsync(e => e.UserName == userName);
     }
 }

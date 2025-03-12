@@ -25,7 +25,7 @@ namespace TestProjectKyzmat.DAL
                     UserName = "user",
                     DateCreate = new DateTime(2025, 3, 10, 15, 45, 23, DateTimeKind.Utc),
                     PasswordHash = "$2a$11$ilZsBJ46DXogvezFCtbWN.WHMtdSqL9IEvBaR73Ge6jxMVh1/3.ku", // password: qwerty12345 
-                    Balance = 27.8m
+                    Balance = 8m
                 });
         }
 

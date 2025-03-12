@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestProjectKyzmat.Core.Entities.Common.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
 using TestProjectKyzmat.Core.Entities;
-using Microsoft.EntityFrameworkCore;
+using TestProjectKyzmat.Core.Entities.Common.Interfaces;
 
 namespace TestProjectKyzmat.DAL.Repositories
 {
     public class TokenRepository(ApplicationDbContext context) : Repository<Token>(context), ITokenRepository
     {
-        public async Task<Token?> GetByValueAsync(string value) => await context.Set<Token>().FirstOrDefaultAsync(e => e.Value == value);
+        public async Task<Token?> GetByValueAsyncForRead(string value) => await context.Set<Token>().AsNoTracking().FirstOrDefaultAsync(e => e.Value == value);
     }
 }
