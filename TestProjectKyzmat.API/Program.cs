@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -12,6 +13,10 @@ var builder = WebApplication.CreateBuilder(args);
 var jwtSettings = builder.Configuration.GetSection("JWTSettings");
 // Add services to the container.
 builder.Services.AddApplication(builder.Configuration);
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
 builder.Services.AddRateLimiter(options =>
 {
     options.AddFixedWindowLimiter(policyName: "fixed", options =>
@@ -50,8 +55,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c => {
     c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "TestProjectKyzmat",
-        Version = "v1"
+        Title = "TestProjectKyzmat API",
+        Version = "v1.0",
+        Description = "An API for managing users, their balance, and payments.",
+        Contact = new OpenApiContact
+        {
+            Name = "Ivan Kobtsev",
+            Email = "vanomc77@gmail.com",
+            Url = new Uri("https://www.linkedin.com/in/ivanrocafellla/")
+        }
     });
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
     {

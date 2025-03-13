@@ -9,19 +9,22 @@ namespace TestProjectKyzmat.API.Controllers
 {
     public class UserController(IUserService userService) : ApiController
     {
-        private const string invalCred = "Invalid credentials";
-        private const string successLoggedOut = "Successfully logged out";
-        private const string invalToken = "Invalid token";
+        const string INVAL_CRED = "Invalid credentials";
+        const string SUCCESS_LOGOUT = "Successfully logged out";
+        const string INVAL_TOKEN = "Invalid token";
 
         [HttpPost("login")]
         [EnableRateLimiting("fixed")]
-        public async Task<IActionResult> Login([FromBody] LoginUserRequestDTO loginUserRequest)
+        public async Task<IActionResult> Login([FromBody] LoginRequestDTO loginUserRequest)
         {
-            Token? token = await userService.AuthUserAsync(loginUserRequest);
-            if (token == null)
-                return StatusCode(500, new ErrorDTO(invalCred));
-            else
-                return Ok(token);
+            return await ValidateAndProceedAsync(async () => 
+            { 
+              Token? token = await userService.AuthUserAsync(loginUserRequest);
+              if (token == null)
+                  return StatusCode(500, new ErrorDTO(INVAL_CRED));
+              else
+                  return Ok(new { token_value = token.Value});  
+            });
         }
 
         [HttpPost("logout")]
@@ -29,7 +32,7 @@ namespace TestProjectKyzmat.API.Controllers
         public async Task<IActionResult> Logout()
         {
             var tokenValue = Request.Headers.Authorization.ToString().Replace("Bearer ", string.Empty);
-            return await userService.LogoutUserAsync(tokenValue) ? Ok(new { message = successLoggedOut }) : Unauthorized(invalToken); 
+            return await userService.LogoutUserAsync(tokenValue) ? Ok(new { message = SUCCESS_LOGOUT }) : Unauthorized(INVAL_TOKEN); 
         }
     }
 }

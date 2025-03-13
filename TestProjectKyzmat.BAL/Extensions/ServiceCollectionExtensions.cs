@@ -44,6 +44,7 @@ namespace TestProjectKyzmat.BAL.Extensions
         public static void AddServices(this IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IPaymentService, PaymentService>();
             services.AddHostedService<TokenCleanupService>();
         }
     }

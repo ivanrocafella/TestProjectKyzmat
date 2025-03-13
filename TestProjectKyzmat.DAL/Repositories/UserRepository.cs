@@ -11,6 +11,8 @@ namespace TestProjectKyzmat.DAL.Repositories
 {
     public class UserRepository(ApplicationDbContext context) : Repository<User>(context), IUserRepository
     {
+        public async Task<User?> GetByUserNameAsync(string userName) => await context.Set<User>().FirstOrDefaultAsync(e => e.UserName == userName);
+
         public async Task<User?> GetByUserNameAsyncForRead(string userName) => await context.Set<User>().AsNoTracking().FirstOrDefaultAsync(e => e.UserName == userName);
     }
 }

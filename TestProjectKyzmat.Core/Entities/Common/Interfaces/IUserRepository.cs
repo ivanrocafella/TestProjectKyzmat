@@ -9,5 +9,6 @@ namespace TestProjectKyzmat.Core.Entities.Common.Interfaces
     public interface IUserRepository : IRepository<User>
     {
         Task<User?> GetByUserNameAsyncForRead(string userName);
+        Task<User?> GetByUserNameAsync(string userName);
     }
 }

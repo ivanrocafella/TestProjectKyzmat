@@ -14,7 +14,7 @@ namespace TestProjectKyzmat.BAL.Services
 {
     public class UserService(IUserRepository userRepository, ITokenRepository tokenRepository, JwtHandler jwtHandler) : IUserService
     {
-        public async Task<Token?> AuthUserAsync(LoginUserRequestDTO userRequestDTO)
+        public async Task<Token?> AuthUserAsync(LoginRequestDTO userRequestDTO)
         { 
             User? user = await userRepository.GetByUserNameAsyncForRead(userRequestDTO.UserName);
             if (user != null)

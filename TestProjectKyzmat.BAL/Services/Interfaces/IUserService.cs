@@ -10,7 +10,7 @@ namespace TestProjectKyzmat.BAL.Services.Interfaces
 {
     public interface IUserService
     {
-        Task<Token?> AuthUserAsync(LoginUserRequestDTO userRequestDTO);
+        Task<Token?> AuthUserAsync(LoginRequestDTO userRequestDTO);
         Task<bool> LogoutUserAsync(string tokenValue);
     }
 }
