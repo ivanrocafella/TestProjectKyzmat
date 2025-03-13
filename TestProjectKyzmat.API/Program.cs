@@ -57,7 +57,10 @@ builder.Services.AddSwaggerGen(c => {
     {
         Title = "TestProjectKyzmat API",
         Version = "v1.0",
-        Description = "An API for managing users, their balance, and payments.",
+        Description = "An API for managing users, their balance, and payments.\n\n" +
+        "Credentials of existing user:\n\n" +
+        "\tUsername: user\n\n" +
+        "\tPassword: qwerty12345",
         Contact = new OpenApiContact
         {
             Name = "Ivan Kobtsev",
